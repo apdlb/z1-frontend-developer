@@ -14,8 +14,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #root {
-    min-height: 100vh,
+    min-height: 100vh;
     font-size: 16px;
+    line-height: 24px;
   }
 `;
 
