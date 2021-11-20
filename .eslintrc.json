@@ -19,6 +19,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks"],
   "rules": {
+    "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "import/extensions": [
       "error",
@@ -29,6 +30,7 @@
         "tsx": "never"
       }
     ],
+    "no-shadow": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/function-component-definition": [
       "error",
