@@ -5,6 +5,7 @@ import Webcam from 'react-webcam';
 import validateDocument from '../../../api/evaluation';
 import Camera from '../../../components/Camera';
 import { CameraStatusEnum } from '../../../components/Camera/types';
+import useIsMounted from '../../../hooks/useIsMounted';
 import { LastDocumentProcessed, OutcomeEnum } from '../../../model/evaluation';
 import PATHS from '../../../routes/paths';
 import { Button, Container, Content, Subtitle, Title } from './styles';
@@ -16,6 +17,7 @@ const Scan: React.FC = () => {
   const [lastDocumentProcessed, setLastDocumentProcessed] =
     useState<LastDocumentProcessed>();
   const [cameraStatus, setCameraStatus] = useState<CameraStatusEnum>();
+  const isMounted = useIsMounted();
 
   useEffect(() => {
     return () => {
@@ -48,16 +50,18 @@ const Scan: React.FC = () => {
         const data = {
           image: document,
         };
-        validateDocument(data)
-          .then(evaluation => {
-            setLastDocumentProcessed({
-              document,
-              outcome: evaluation.summary.outcome,
+        if (isMounted()) {
+          validateDocument(data)
+            .then(evaluation => {
+              setLastDocumentProcessed({
+                document,
+                outcome: evaluation.summary.outcome,
+              });
+            })
+            .catch(() => {
+              toast.error('An error has occurred validating document');
             });
-          })
-          .catch(() => {
-            toast.error('An error has occurred validating document');
-          });
+        }
       }
     }, 2500);
 
