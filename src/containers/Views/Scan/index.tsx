@@ -2,31 +2,19 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import validateDocument from '../../../api/evaluation';
-import Light from '../../../assets/light.svg';
-import SuccessOutlined from '../../../assets/success_outlined.svg';
-import IconText from '../../../components/IconText';
-import { OutcomeEnum } from '../../../model/evaluation';
+import Camera from '../../../components/Camera';
+import { CameraStatusEnum } from '../../../components/Camera/types';
+import { LastDocumentProcessed, OutcomeEnum } from '../../../model/evaluation';
 import PATHS from '../../../routes/paths';
-import {
-  Button,
-  Camera,
-  CameraInfo,
-  Card,
-  Container,
-  Content,
-  ErrorMessage,
-  Subtitle,
-  Title,
-} from './styles';
+import { Button, Container, Content, Subtitle, Title } from './styles';
 
 const Scan: React.FC = () => {
   const navigate = useNavigate();
   const cameraRef = useRef<Webcam>(null);
-  const [webcamError, setWebcamError] = useState<string | DOMException>();
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
   const [lastDocumentProcessed, setLastDocumentProcessed] =
-    useState<{ document: string; outcome: OutcomeEnum }>();
-  const videoConstraints = { width: 289, height: 179 };
+    useState<LastDocumentProcessed>();
+  const [cameraStatus, setCameraStatus] = useState<CameraStatusEnum>();
 
   useEffect(() => {
     return () => {
@@ -42,14 +30,17 @@ const Scan: React.FC = () => {
 
   useEffect(() => {
     if (lastDocumentProcessed?.outcome === OutcomeEnum.SUCCESS) {
+      setCameraStatus(CameraStatusEnum.OK);
       navigateToHome();
       if (intervalId) {
         clearInterval(intervalId);
       }
+    } else if (lastDocumentProcessed?.outcome === OutcomeEnum.ERROR) {
+      setCameraStatus(CameraStatusEnum.KO);
     }
   }, [lastDocumentProcessed]);
 
-  const onStartCapture = () => {
+  const handleStartCapture = () => {
     const newIntervalId = setInterval(() => {
       const document = cameraRef.current?.getScreenshot();
       if (document) {
@@ -72,10 +63,6 @@ const Scan: React.FC = () => {
     setIntervalId(newIntervalId);
   };
 
-  const handleUserMediaError = (err: string | DOMException) => {
-    setWebcamError(err);
-  };
-
   return (
     <Container>
       <Content>
@@ -87,43 +74,11 @@ const Scan: React.FC = () => {
           The picture will be taken automatically.
         </Subtitle>
 
-        <Card>
-          {!webcamError ? (
-            <Camera
-              ref={cameraRef}
-              audio={false}
-              onCanPlay={onStartCapture}
-              onUserMediaError={handleUserMediaError}
-              videoConstraints={videoConstraints}
-              width={videoConstraints.width}
-              height={videoConstraints.height}
-              outcome={lastDocumentProcessed?.outcome}
-            />
-          ) : (
-            <ErrorMessage>
-              <p>This app only works when we can access your camera.</p>
-              <p>Turn on the camera permission for the full experience</p>
-            </ErrorMessage>
-          )}
-        </Card>
-
-        <CameraInfo>
-          {!lastDocumentProcessed ? (
-            <IconText
-              src={Light}
-              alt="Lighting"
-              text="Room lighting is too low"
-            />
-          ) : (
-            lastDocumentProcessed.outcome === OutcomeEnum.SUCCESS && (
-              <IconText
-                src={SuccessOutlined}
-                alt="Success"
-                text="Picture taken!"
-              />
-            )
-          )}
-        </CameraInfo>
+        <Camera
+          ref={cameraRef}
+          handleStartCapture={handleStartCapture}
+          status={cameraStatus}
+        />
 
         <Button onClick={navigateToHome}>
           <span>Cancel</span>

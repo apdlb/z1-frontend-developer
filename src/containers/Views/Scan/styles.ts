@@ -1,7 +1,5 @@
-import Webcam from 'react-webcam';
 import styled from 'styled-components';
 import ScanBackground from '../../../assets/scan_background.jpg';
-import { OutcomeEnum } from '../../../model/evaluation';
 
 export const Container = styled.div`
   display: flex;
@@ -53,36 +51,6 @@ export const Subtitle = styled.span`
   color: #fff;
 `;
 
-export const Card = styled.div`
-  margin: 0px 57px 16px 58px;
-  height: 179px;
-  width: 289px;
-  text-align: center;
-`;
-
-export const Camera = styled(Webcam)((props: { outcome?: OutcomeEnum }) => {
-  const { outcome } = props;
-  let outline = 'none';
-  if (outcome) {
-    outline = '2px solid';
-    if (outcome === OutcomeEnum.SUCCESS) {
-      outline += ' #69CC8B';
-    } else if (outcome === OutcomeEnum.ERROR) {
-      outline += ' #C00000';
-    }
-  }
-  return { 'object-fit': 'cover', 'border-radius': '18px', outline };
-});
-
-export const CameraInfo = styled.div`
-  margin-bottom: 126px;
-  min-height: 30px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  line-height: 16px;
-`;
-
 export const Button = styled.button`
   margin-bottom: 45px;
   font-size: 16px;
@@ -91,8 +59,4 @@ export const Button = styled.button`
   letter-spacing: 0.35px;
   text-transform: uppercase;
   color: #fff;
-`;
-
-export const ErrorMessage = styled.div`
-  color: #cc0000;
 `;
