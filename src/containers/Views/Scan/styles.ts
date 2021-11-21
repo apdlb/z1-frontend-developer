@@ -49,6 +49,7 @@ export const Subtitle = styled.span`
   margin: 0px 30px 59.91px 31px;
   text-align: center;
   color: #fff;
+  white-space: break-spaces;
 `;
 
 export const Button = styled.button`

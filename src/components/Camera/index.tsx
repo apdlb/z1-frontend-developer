@@ -2,6 +2,7 @@ import { forwardRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import Light from '../../assets/light.svg';
 import SuccessOutlined from '../../assets/success_outlined.svg';
+import i18n from '../../utils/i18n';
 import IconText from '../IconText';
 import { WebcamInfo, Container, ErrorMessage, WebcamCamera } from './styles';
 import { CameraStatusEnum, ICameraProps } from './types';
@@ -13,9 +14,9 @@ const Camera = forwardRef<Webcam | null, ICameraProps>((props, ref) => {
     handleStartCapture,
     status,
     defaultIcon = Light,
-    defaultMessage = 'Room lighting is too low',
+    defaultMessage = i18n['camera.default-message'],
     successIcon = SuccessOutlined,
-    successMessage = 'Picture taken!',
+    successMessage = i18n['camera.success-message'],
   } = props;
   const [webcamError, setWebcamError] = useState<string | DOMException>();
 
@@ -39,8 +40,8 @@ const Camera = forwardRef<Webcam | null, ICameraProps>((props, ref) => {
           />
         ) : (
           <ErrorMessage>
-            <p>This app only works when we can access your camera.</p>
-            <p>Turn on the camera permission for the full experience</p>
+            <p>{i18n['camera.permission-error.1']}</p>
+            <p>{i18n['camera.permission-error.2']}</p>
           </ErrorMessage>
         )}
       </Container>

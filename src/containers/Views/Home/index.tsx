@@ -14,6 +14,7 @@ import {
 } from './styles';
 import DocumentInfo from '../../../components/DocumentInfo';
 import PictureButton from '../../../components/PictureButton';
+import i18n from '../../../utils/i18n';
 
 const Home: React.FC = () => {
   const location = useLocation();
@@ -28,16 +29,13 @@ const Home: React.FC = () => {
   return (
     <Container>
       <Header>
-        <HeaderTitle>BankClient</HeaderTitle>
+        <HeaderTitle>{i18n['app.title']}</HeaderTitle>
       </Header>
 
       <Content>
-        <ContentTitle>Scan your ID</ContentTitle>
+        <ContentTitle>{i18n['home.title']}</ContentTitle>
 
-        <ContentSubtitle>
-          Take a picture. It may take time to validate your personal
-          information.
-        </ContentSubtitle>
+        <ContentSubtitle>{i18n['home.subtitle']}</ContentSubtitle>
 
         {lastDocumentProcessed ? (
           <DocumentInfo lastDocumentProcessed={lastDocumentProcessed} />
@@ -46,7 +44,7 @@ const Home: React.FC = () => {
             <PreviewImage src={IdBg} alt="ID" />
 
             <PictureButton onClick={navigateToScan}>
-              <span>Take picture</span>
+              <span>{i18n['take-picture']}</span>
             </PictureButton>
           </Card>
         )}

@@ -7,6 +7,7 @@ import PictureButton from '../PictureButton';
 import { Document, DocumentImage, DocumentStatus } from './styles';
 import PATHS from '../../routes/paths';
 import { IDocumentInfoProps } from './types';
+import i18n from '../../utils/i18n';
 
 const DocumentInfo: React.FC<IDocumentInfoProps> = props => {
   const { lastDocumentProcessed } = props;
@@ -33,7 +34,7 @@ const DocumentInfo: React.FC<IDocumentInfoProps> = props => {
 
       {lastDocumentProcessed.outcome === OutcomeEnum.ERROR && (
         <PictureButton onClick={navigateToScan}>
-          <span>Retake picture</span>
+          <span>{i18n['retake-picture']}</span>
         </PictureButton>
       )}
     </Document>

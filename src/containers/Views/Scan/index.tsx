@@ -8,6 +8,7 @@ import { CameraStatusEnum } from '../../../components/Camera/types';
 import useIsMounted from '../../../hooks/useIsMounted';
 import { LastDocumentProcessed, OutcomeEnum } from '../../../model/evaluation';
 import PATHS from '../../../routes/paths';
+import i18n from '../../../utils/i18n';
 import { Button, Container, Content, Subtitle, Title } from './styles';
 
 const Scan: React.FC = () => {
@@ -71,13 +72,9 @@ const Scan: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Title>Take picture</Title>
+        <Title>{i18n['scan.title']}</Title>
 
-        <Subtitle>
-          Fit your ID card inside the frame.
-          <br />
-          The picture will be taken automatically.
-        </Subtitle>
+        <Subtitle>{i18n['scan.subtitle']}</Subtitle>
 
         <Camera
           ref={cameraRef}
@@ -86,7 +83,7 @@ const Scan: React.FC = () => {
         />
 
         <Button onClick={navigateToHome}>
-          <span>Cancel</span>
+          <span>{i18n.cancel}</span>
         </Button>
       </Content>
     </Container>
