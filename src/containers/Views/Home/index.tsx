@@ -26,10 +26,16 @@ const Home: React.FC = () => {
     navigate(PATHS.SCAN);
   };
 
+  const clearLocationState = () => {
+    navigate(PATHS.HOME, { replace: true });
+  };
+
   return (
     <Container>
       <Header>
-        <HeaderTitle data-cy="app-title">{i18n['app.title']}</HeaderTitle>
+        <HeaderTitle data-cy="app-title" onClick={clearLocationState}>
+          {i18n['app.title']}
+        </HeaderTitle>
       </Header>
 
       <Content>

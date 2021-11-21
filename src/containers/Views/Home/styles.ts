@@ -10,6 +10,7 @@ export const Header = styled.div`
 export const Title = styled.span`
   font-weight: bold;
   font-size: 21px;
+  cursor: pointer;
 `;
 export const HeaderTitle = styled(Title)`
   font-style: italic;
