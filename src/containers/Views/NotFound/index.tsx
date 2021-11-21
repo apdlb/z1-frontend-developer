@@ -1,13 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Code, Container, RedirectLink } from './styles';
 
 const NotFound: React.FC = () => {
   return (
-    <>
-      <div>404: Not found</div>
-      <div>
-        <Link to="/">Back to Home</Link>
-      </div>
-    </>
+    <Container>
+      <Code>404: Not found</Code>
+      <RedirectLink to="/">Back to Home</RedirectLink>
+    </Container>
   );
 };
 
