@@ -29,11 +29,11 @@ const Home: React.FC = () => {
   return (
     <Container>
       <Header>
-        <HeaderTitle>{i18n['app.title']}</HeaderTitle>
+        <HeaderTitle data-cy="app-title">{i18n['app.title']}</HeaderTitle>
       </Header>
 
       <Content>
-        <ContentTitle>{i18n['home.title']}</ContentTitle>
+        <ContentTitle data-cy="home-title">{i18n['home.title']}</ContentTitle>
 
         <ContentSubtitle>{i18n['home.subtitle']}</ContentSubtitle>
 
@@ -43,7 +43,10 @@ const Home: React.FC = () => {
           <Card>
             <PreviewImage src={IdBg} alt="ID" />
 
-            <PictureButton onClick={navigateToScan}>
+            <PictureButton
+              data-cy="button-take-picture"
+              onClick={navigateToScan}
+            >
               <span>{i18n['take-picture']}</span>
             </PictureButton>
           </Card>

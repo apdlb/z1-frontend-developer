@@ -29,6 +29,7 @@ const Camera = forwardRef<Webcam | null, ICameraProps>((props, ref) => {
       <Container>
         {!webcamError ? (
           <WebcamCamera
+            data-cy="camera"
             ref={ref}
             audio={false}
             onCanPlay={handleStartCapture}

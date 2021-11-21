@@ -2,13 +2,13 @@ import Text from './styles';
 import { IIconTextProps } from './types';
 
 const IconText: React.FC<IIconTextProps> = props => {
-  const { src, alt, text } = props;
+  const { src, alt, text, dataCy = '' } = props;
 
   return (
     <>
       <img src={src} alt={alt} />
 
-      <Text>{text}</Text>
+      <Text data-cy={dataCy}>{text}</Text>
     </>
   );
 };

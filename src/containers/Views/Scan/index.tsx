@@ -72,7 +72,7 @@ const Scan: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Title>{i18n['scan.title']}</Title>
+        <Title data-cy="scan-title">{i18n['scan.title']}</Title>
 
         <Subtitle>{i18n['scan.subtitle']}</Subtitle>
 
@@ -82,7 +82,7 @@ const Scan: React.FC = () => {
           status={cameraStatus}
         />
 
-        <Button onClick={navigateToHome}>
+        <Button data-cy="scan-cancel" onClick={navigateToHome}>
           <span>{i18n.cancel}</span>
         </Button>
       </Content>

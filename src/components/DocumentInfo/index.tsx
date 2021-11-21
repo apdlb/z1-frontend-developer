@@ -24,16 +24,29 @@ const DocumentInfo: React.FC<IDocumentInfoProps> = props => {
         alt="foto"
         status={lastDocumentProcessed.outcome}
       />
-      <DocumentStatus status={lastDocumentProcessed.outcome}>
+      <DocumentStatus
+        data-cy="document-status"
+        status={lastDocumentProcessed.outcome}
+      >
         {lastDocumentProcessed.outcome === OutcomeEnum.SUCCESS ? (
-          <IconText src={Success} alt="Success" text="Accepted" />
+          <IconText
+            dataCy="document-accepted"
+            src={Success}
+            alt="Success"
+            text="Accepted"
+          />
         ) : (
-          <IconText src={Error} alt="Rejected" text="Rejected" />
+          <IconText
+            dataCy="document-rejected"
+            src={Error}
+            alt="Rejected"
+            text="Rejected"
+          />
         )}
       </DocumentStatus>
 
       {lastDocumentProcessed.outcome === OutcomeEnum.ERROR && (
-        <PictureButton onClick={navigateToScan}>
+        <PictureButton data-cy="button-retake-picture" onClick={navigateToScan}>
           <span>{i18n['retake-picture']}</span>
         </PictureButton>
       )}
