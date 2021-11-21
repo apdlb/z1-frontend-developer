@@ -1,3 +1,4 @@
+// import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import IdBg from '../../../assets/id_bg.svg';
 import { LastDocumentProcessed } from '../../../model/evaluation';
@@ -19,11 +20,11 @@ import i18n from '../../../utils/i18n';
 const Home: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const lastDocumentProcessed = location.state
-    ?.lastDocumentProcessed as LastDocumentProcessed;
+  const lastDocumentProcessed: LastDocumentProcessed =
+    location.state?.lastDocumentProcessed;
 
   const navigateToScan = () => {
-    navigate(PATHS.SCAN);
+    navigate(PATHS.SCAN, { state: { lastDocumentProcessed } });
   };
 
   const clearLocationState = () => {
@@ -44,7 +45,10 @@ const Home: React.FC = () => {
         <ContentSubtitle>{i18n['home.subtitle']}</ContentSubtitle>
 
         {lastDocumentProcessed ? (
-          <DocumentInfo lastDocumentProcessed={lastDocumentProcessed} />
+          <DocumentInfo
+            lastDocumentProcessed={lastDocumentProcessed}
+            navigateToScan={navigateToScan}
+          />
         ) : (
           <Card>
             <PreviewImage src={IdBg} alt="ID" />

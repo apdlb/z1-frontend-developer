@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Webcam from 'react-webcam';
 import validateDocument from '../../../api/evaluation';
@@ -12,13 +12,16 @@ import i18n from '../../../utils/i18n';
 import { Button, Container, Content, Subtitle, Title } from './styles';
 
 const Scan: React.FC = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+  const isMounted = useIsMounted();
   const cameraRef = useRef<Webcam>(null);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
   const [lastDocumentProcessed, setLastDocumentProcessed] =
     useState<LastDocumentProcessed>();
   const [cameraStatus, setCameraStatus] = useState<CameraStatusEnum>();
-  const isMounted = useIsMounted();
+  const stateLastDocumentProcessed: LastDocumentProcessed =
+    location.state?.lastDocumentProcessed;
 
   useEffect(() => {
     return () => {
@@ -29,7 +32,12 @@ const Scan: React.FC = () => {
   }, []);
 
   const navigateToHome = () => {
-    navigate(PATHS.HOME, { state: { lastDocumentProcessed } });
+    navigate(PATHS.HOME, {
+      state: {
+        lastDocumentProcessed:
+          lastDocumentProcessed || stateLastDocumentProcessed,
+      },
+    });
   };
 
   useEffect(() => {

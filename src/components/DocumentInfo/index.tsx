@@ -1,21 +1,14 @@
-import { useNavigate } from 'react-router-dom';
 import Success from '../../assets/success.svg';
 import Error from '../../assets/error.svg';
 import { OutcomeEnum } from '../../model/evaluation';
 import IconText from '../IconText';
 import PictureButton from '../PictureButton';
 import { Document, DocumentImage, DocumentStatus } from './styles';
-import PATHS from '../../routes/paths';
 import { IDocumentInfoProps } from './types';
 import i18n from '../../utils/i18n';
 
 const DocumentInfo: React.FC<IDocumentInfoProps> = props => {
-  const { lastDocumentProcessed } = props;
-  const navigate = useNavigate();
-
-  const navigateToScan = () => {
-    navigate(PATHS.SCAN);
-  };
+  const { lastDocumentProcessed, navigateToScan } = props;
 
   return (
     <Document>
