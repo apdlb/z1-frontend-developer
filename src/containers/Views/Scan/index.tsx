@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Webcam from 'react-webcam';
 import validateDocument from '../../../api/evaluation';
 import Camera from '../../../components/Camera';
@@ -54,8 +55,8 @@ const Scan: React.FC = () => {
               outcome: evaluation.summary.outcome,
             });
           })
-          .catch(err => {
-            console.log(err);
+          .catch(() => {
+            toast.error('An error has occurred validating document');
           });
       }
     }, 2500);
