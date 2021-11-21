@@ -10,3 +10,8 @@ type Summary = {
 export type Evaluation = {
   summary: Summary;
 };
+
+export type LastDocumentProcessed = {
+  document: string;
+  outcome: OutcomeEnum;
+};
