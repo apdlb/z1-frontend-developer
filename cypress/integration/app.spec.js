@@ -2,7 +2,7 @@
 
 describe('BankClient App', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000')
+    cy.visit('/')
   })
 
   it('Displays home screen', () => {
