@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { OutcomeEnum } from '../../../model/evaluation';
 
 export const Container = styled.div``;
 
@@ -44,34 +45,73 @@ export const Card = styled.div`
   align-items: center;
 `;
 
-export const Image = styled.img`
+export const PreviewImage = styled.img`
   margin: 18px 25px 18px 18px;
   height: 124px;
   width: 217px;
 `;
 
-export const Button = styled.button`
-  height: 48px;
-  width: 160px;
+export const PictureButton = styled.button`
+  position: absolute;
+  padding: 12px 24px;
   box-shadow: 0 10px 20px -5px rgba(47, 0, 121, 0.3);
+  border: 0px;
   border-radius: 24px;
   background-color: #2f0079;
-  border: 0px;
-  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+  color: #fff;
+
   &:hover,
   &:active {
     cursor: pointer;
   }
+
   &:active {
     background-color: #200054;
   }
 `;
 
-export const ButtonText = styled.span`
-  height: 24px;
-  width: 120px;
-  color: #ffffff;
-  font-weight: bold;
-  letter-spacing: 0.35px;
-  line-height: 24px;
+export const Document = styled.div`
+  margin: 0px 57px 0px 58px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DocumentImage = styled.img`
+  height: 160px;
+  width: 260px;
+  border-radius: 12px;
+  border: ${(props: { status: OutcomeEnum }) =>
+    props.status === OutcomeEnum.SUCCESS
+      ? '2px solid #69CC8B'
+      : '2px solid #C00000'};
+`;
+
+export const DocumentStatus = styled.div`
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  position: relative;
+  top: -15px;
+  right: 24px;
+  width: 105px;
+  height: 30px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: ${(props: { status: OutcomeEnum }) =>
+    props.status === OutcomeEnum.SUCCESS ? '#69cc8b' : '#C00000'};
+
+  & span {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.75px;
+    line-height: 12px;
+    text-transform: uppercase;
+  }
 `;

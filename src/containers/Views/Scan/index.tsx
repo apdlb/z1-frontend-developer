@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import validateDocument from '../../../api/evaluation';
 import Light from '../../../assets/light.svg';
+import SuccessOutlined from '../../../assets/success_outlined.svg';
+import IconText from '../../../components/IconText';
 import { OutcomeEnum } from '../../../model/evaluation';
 import PATHS from '../../../routes/paths';
 import {
@@ -14,7 +16,6 @@ import {
   Content,
   ErrorMessage,
   Subtitle,
-  Text,
   Title,
 } from './styles';
 
@@ -25,7 +26,7 @@ const Scan: React.FC = () => {
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
   const [lastDocumentProcessed, setLastDocumentProcessed] =
     useState<{ document: string; outcome: OutcomeEnum }>();
-  const [documentError, setDocumentError] = useState<boolean>(false);
+  const videoConstraints = { width: 289, height: 179 };
 
   useEffect(() => {
     return () => {
@@ -42,12 +43,14 @@ const Scan: React.FC = () => {
   useEffect(() => {
     if (lastDocumentProcessed?.outcome === OutcomeEnum.SUCCESS) {
       navigateToHome();
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
     }
   }, [lastDocumentProcessed]);
 
   const onStartCapture = () => {
     const newIntervalId = setInterval(() => {
-      setDocumentError(false);
       const document = cameraRef.current?.getScreenshot();
       if (document) {
         const data = {
@@ -59,9 +62,6 @@ const Scan: React.FC = () => {
               document,
               outcome: evaluation.summary.outcome,
             });
-            if (evaluation.summary.outcome === OutcomeEnum.ERROR) {
-              setDocumentError(true);
-            }
           })
           .catch(err => {
             console.log(err);
@@ -91,11 +91,13 @@ const Scan: React.FC = () => {
           {!webcamError ? (
             <Camera
               ref={cameraRef}
+              audio={false}
               onCanPlay={onStartCapture}
               onUserMediaError={handleUserMediaError}
-              width={289}
-              height={179}
-              error={documentError}
+              videoConstraints={videoConstraints}
+              width={videoConstraints.width}
+              height={videoConstraints.height}
+              outcome={lastDocumentProcessed?.outcome}
             />
           ) : (
             <ErrorMessage>
@@ -106,16 +108,26 @@ const Scan: React.FC = () => {
         </Card>
 
         <CameraInfo>
-          {!documentError && (
-            <>
-              <img src={Light} alt="Lighting" />
-
-              <Text>Room lighting is too low</Text>
-            </>
+          {!lastDocumentProcessed ? (
+            <IconText
+              src={Light}
+              alt="Lighting"
+              text="Room lighting is too low"
+            />
+          ) : (
+            lastDocumentProcessed.outcome === OutcomeEnum.SUCCESS && (
+              <IconText
+                src={SuccessOutlined}
+                alt="Success"
+                text="Picture taken!"
+              />
+            )
           )}
         </CameraInfo>
 
-        <Button onClick={navigateToHome}>CANCEL</Button>
+        <Button onClick={navigateToHome}>
+          <span>Cancel</span>
+        </Button>
       </Content>
     </Container>
   );
