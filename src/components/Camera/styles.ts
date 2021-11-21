@@ -1,29 +1,33 @@
 import Webcam from 'react-webcam';
 import styled from 'styled-components';
-import { CameraStatusEnum } from './types';
+import { CameraStatusEnum, IStyledContainerProps } from './types';
 
-export const Container = styled.div`
-  margin: 0px 57px 16px 58px;
-  height: 179px;
-  width: 289px;
-  text-align: center;
-`;
-
-export const WebcamCamera = styled(Webcam)(
-  (props: { status?: CameraStatusEnum }) => {
-    const { status } = props;
-    let outline = 'none';
-    if (status) {
-      outline = '2px solid';
-      if (status === CameraStatusEnum.OK) {
-        outline += ' #69CC8B';
-      } else if (status === CameraStatusEnum.KO) {
-        outline += ' #C00000';
-      }
+export const Container = styled.div((props: IStyledContainerProps) => {
+  const { status } = props;
+  let border = '2px solid';
+  if (status) {
+    if (status === CameraStatusEnum.OK) {
+      border += ' #69CC8B';
+    } else if (status === CameraStatusEnum.KO) {
+      border += ' #C00000';
     }
-    return { 'object-fit': 'cover', 'border-radius': '18px', outline };
-  },
-);
+  } else {
+    border += ' transparent';
+  }
+  return {
+    margin: '0px 57px 16px 58px',
+    height: '179px',
+    width: '289px',
+    'text-align': 'center',
+    'border-radius': '18px',
+    border,
+  };
+});
+
+export const WebcamCamera = styled(Webcam)`
+  object-fit: cover;
+  border-radius: 18px;
+`;
 
 export const WebcamInfo = styled.div`
   margin-bottom: 126px;

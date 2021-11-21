@@ -26,7 +26,7 @@ const Camera = forwardRef<Webcam | null, ICameraProps>((props, ref) => {
 
   return (
     <>
-      <Container>
+      <Container status={status}>
         {!webcamError ? (
           <WebcamCamera
             data-cy="camera"
@@ -37,7 +37,6 @@ const Camera = forwardRef<Webcam | null, ICameraProps>((props, ref) => {
             videoConstraints={videoConstraints}
             width={videoConstraints.width}
             height={videoConstraints.height}
-            status={status}
           />
         ) : (
           <ErrorMessage>
