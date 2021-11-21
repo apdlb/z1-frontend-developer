@@ -1,12 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import IdBg from '../../../assets/id_bg.svg';
-import Success from '../../../assets/success.svg';
-import Error from '../../../assets/error.svg';
-import IconText from '../../../components/IconText';
-import { OutcomeEnum } from '../../../model/evaluation';
+import { LastDocumentProcessed } from '../../../model/evaluation';
 import PATHS from '../../../routes/paths';
 import {
-  PictureButton,
   Card,
   Container,
   Content,
@@ -15,15 +11,15 @@ import {
   Header,
   HeaderTitle,
   PreviewImage,
-  Document,
-  DocumentImage,
-  DocumentStatus,
 } from './styles';
+import DocumentInfo from '../../../components/DocumentInfo';
+import PictureButton from '../../../components/PictureButton';
 
 const Home: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { lastDocumentProcessed } = location.state || {};
+  const lastDocumentProcessed = location.state
+    ?.lastDocumentProcessed as LastDocumentProcessed;
 
   const navigateToScan = () => {
     navigate(PATHS.SCAN);
@@ -44,26 +40,7 @@ const Home: React.FC = () => {
         </ContentSubtitle>
 
         {lastDocumentProcessed ? (
-          <Document>
-            <DocumentImage
-              src={lastDocumentProcessed.document}
-              alt="foto"
-              status={lastDocumentProcessed.outcome}
-            />
-            <DocumentStatus status={lastDocumentProcessed.outcome}>
-              {lastDocumentProcessed.outcome === OutcomeEnum.SUCCESS ? (
-                <IconText src={Success} alt="Success" text="Accepted" />
-              ) : (
-                <IconText src={Error} alt="Rejected" text="Rejected" />
-              )}
-            </DocumentStatus>
-
-            {lastDocumentProcessed.outcome === OutcomeEnum.ERROR && (
-              <PictureButton onClick={navigateToScan}>
-                <span>Retake picture</span>
-              </PictureButton>
-            )}
-          </Document>
+          <DocumentInfo lastDocumentProcessed={lastDocumentProcessed} />
         ) : (
           <Card>
             <PreviewImage src={IdBg} alt="ID" />
