@@ -11,3 +11,7 @@ export interface ICameraProps {
   successIcon?: string;
   successMessage?: string;
 }
+
+export interface IStyledContainerProps {
+  status?: CameraStatusEnum;
+}

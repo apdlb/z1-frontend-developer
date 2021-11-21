@@ -47,7 +47,7 @@ describe('BankClient App', () => {
         throw new Error('Error validating document')
       }
     })
-    cy.get('[data-cy=camera]').should('have.css', 'outline', 'rgb(192, 0, 0) solid 2px')
+    cy.get('[data-cy=container-camera]').should('have.css', 'border', '2px solid rgb(192, 0, 0)')
   })
 
   it('Cancel scan', () => {

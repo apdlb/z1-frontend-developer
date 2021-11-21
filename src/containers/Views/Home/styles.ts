@@ -1,34 +1,16 @@
 import styled from 'styled-components';
+import Main from '../../Layout/Main';
 
-export const Container = styled.div``;
-
-export const Header = styled.div`
-  padding: 20px 18px;
-  border-bottom: 1px solid rgba(47, 0, 121, 0.1);
-`;
+export const Container = styled(Main)``;
 
 export const Title = styled.span`
+  margin: 0px 45px 16px 48px;
   font-weight: bold;
   font-size: 21px;
   cursor: pointer;
 `;
-export const HeaderTitle = styled(Title)`
-  font-style: italic;
-  color: #2f0079;
-`;
 
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 33px;
-`;
-
-export const ContentTitle = styled(Title)`
-  margin: 0px 45px 16px 48px;
-`;
-
-export const ContentSubtitle = styled.span`
+export const Subtitle = styled.span`
   margin: 0px 30px 27px 31px;
   text-align: center;
 `;

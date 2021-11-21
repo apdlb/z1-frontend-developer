@@ -59,18 +59,18 @@ const Scan: React.FC = () => {
         const data = {
           image: document,
         };
-        if (isMounted()) {
-          validateDocument(data)
-            .then(evaluation => {
+        validateDocument(data)
+          .then(evaluation => {
+            if (isMounted())
               setLastDocumentProcessed({
                 document,
                 outcome: evaluation.summary.outcome,
               });
-            })
-            .catch(() => {
+          })
+          .catch(() => {
+            if (isMounted())
               toast.error('An error has occurred validating document');
-            });
-        }
+          });
       }
     }, 2500);
 

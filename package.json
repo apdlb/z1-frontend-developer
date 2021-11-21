@@ -1,6 +1,6 @@
 {
   "name": "z1-frontend-developer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
@@ -25,7 +25,7 @@
     "lint:fix": "eslint --fix src/**/*.{js,ts,tsx}",
     "e2e": "cypress open",
     "e2e:run": "cypress run",
-    "build:image": "npm run build && docker build -t bank-client/front:1.0.0 ."
+    "build:image": "npm run build && docker build -t bank-client/front:1.0.1 ."
   },
   "eslintConfig": {
     "extends": [
