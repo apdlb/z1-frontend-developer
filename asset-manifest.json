@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.js": "/z1-frontend-developer/static/js/main.8cbacb67.chunk.js",
+    "main.js.map": "/z1-frontend-developer/static/js/main.8cbacb67.chunk.js.map",
+    "runtime-main.js": "/z1-frontend-developer/static/js/runtime-main.69159ee8.js",
+    "runtime-main.js.map": "/z1-frontend-developer/static/js/runtime-main.69159ee8.js.map",
+    "static/css/2.58a45539.chunk.css": "/z1-frontend-developer/static/css/2.58a45539.chunk.css",
+    "static/js/2.185ac490.chunk.js": "/z1-frontend-developer/static/js/2.185ac490.chunk.js",
+    "static/js/2.185ac490.chunk.js.map": "/z1-frontend-developer/static/js/2.185ac490.chunk.js.map",
+    "static/js/3.f1ffaf8f.chunk.js": "/z1-frontend-developer/static/js/3.f1ffaf8f.chunk.js",
+    "static/js/3.f1ffaf8f.chunk.js.map": "/z1-frontend-developer/static/js/3.f1ffaf8f.chunk.js.map",
+    "index.html": "/z1-frontend-developer/index.html",
+    "static/css/2.58a45539.chunk.css.map": "/z1-frontend-developer/static/css/2.58a45539.chunk.css.map",
+    "static/js/2.185ac490.chunk.js.LICENSE.txt": "/z1-frontend-developer/static/js/2.185ac490.chunk.js.LICENSE.txt",
+    "static/media/Roboto-Black.2a428584.ttf": "/z1-frontend-developer/static/media/Roboto-Black.2a428584.ttf",
+    "static/media/Roboto-BlackItalic.77e50ab1.ttf": "/z1-frontend-developer/static/media/Roboto-BlackItalic.77e50ab1.ttf",
+    "static/media/Roboto-Bold.75371f53.ttf": "/z1-frontend-developer/static/media/Roboto-Bold.75371f53.ttf",
+    "static/media/Roboto-BoldItalic.60c1f67b.ttf": "/z1-frontend-developer/static/media/Roboto-BoldItalic.60c1f67b.ttf",
+    "static/media/Roboto-Italic.beb7fe13.ttf": "/z1-frontend-developer/static/media/Roboto-Italic.beb7fe13.ttf",
+    "static/media/Roboto-Light.8be2d148.ttf": "/z1-frontend-developer/static/media/Roboto-Light.8be2d148.ttf",
+    "static/media/Roboto-LightItalic.43cbee78.ttf": "/z1-frontend-developer/static/media/Roboto-LightItalic.43cbee78.ttf",
+    "static/media/Roboto-Medium.7429a63c.ttf": "/z1-frontend-developer/static/media/Roboto-Medium.7429a63c.ttf",
+    "static/media/Roboto-MediumItalic.56a82359.ttf": "/z1-frontend-developer/static/media/Roboto-MediumItalic.56a82359.ttf",
+    "static/media/Roboto-Regular.a8d6ac03.ttf": "/z1-frontend-developer/static/media/Roboto-Regular.a8d6ac03.ttf",
+    "static/media/Roboto-Thin.1711b41f.ttf": "/z1-frontend-developer/static/media/Roboto-Thin.1711b41f.ttf",
+    "static/media/Roboto-ThinItalic.026cbce1.ttf": "/z1-frontend-developer/static/media/Roboto-ThinItalic.026cbce1.ttf",
+    "static/media/error.d9685473.svg": "/z1-frontend-developer/static/media/error.d9685473.svg",
+    "static/media/id_bg.d5384806.svg": "/z1-frontend-developer/static/media/id_bg.d5384806.svg",
+    "static/media/light.094c2df2.svg": "/z1-frontend-developer/static/media/light.094c2df2.svg",
+    "static/media/scan_background.1145f4a0.jpg": "/z1-frontend-developer/static/media/scan_background.1145f4a0.jpg",
+    "static/media/success.77fa9a00.svg": "/z1-frontend-developer/static/media/success.77fa9a00.svg",
+    "static/media/success_outlined.a6fd9318.svg": "/z1-frontend-developer/static/media/success_outlined.a6fd9318.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.69159ee8.js",
+    "static/css/2.58a45539.chunk.css",
+    "static/js/2.185ac490.chunk.js",
+    "static/js/main.8cbacb67.chunk.js"
+  ]
+}
