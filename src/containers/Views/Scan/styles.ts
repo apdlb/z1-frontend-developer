@@ -5,7 +5,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
 
   &::before {
     content: '';
@@ -18,6 +17,7 @@ export const Container = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     filter: blur(3px) grayscale(65%) contrast(30%);
+    top: 0px;
   }
 `;
 
