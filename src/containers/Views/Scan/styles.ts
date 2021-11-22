@@ -46,14 +46,14 @@ export const Title = styled.span`
 `;
 
 export const Subtitle = styled.span`
-  margin: 0px 30px 59.91px 31px;
+  margin: 0px 30px 56px 31px;
   text-align: center;
   color: #fff;
   white-space: break-spaces;
 `;
 
 export const Button = styled.button`
-  margin-bottom: 45px;
+  margin-bottom: 44px;
   font-size: 16px;
   font-weight: bold;
   line-height: 24px;
