@@ -1,12 +1,16 @@
 import { ToastContainer } from 'react-toastify';
+import { ContextProvider } from './context';
 import GlobalStyle from './styles';
 import Routes from './routes';
 import 'react-toastify/dist/ReactToastify.css';
-import { ContextProvider } from './context';
 
 const App: React.FC = () => {
+  const version = process.env.REACT_APP_VERSION;
+
   return (
     <>
+      {version && <meta name="version" content={version} />}
+
       <GlobalStyle />
 
       <ContextProvider>
