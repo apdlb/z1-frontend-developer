@@ -1,6 +1,6 @@
 {
   "name": "z1-frontend-developer",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
@@ -25,7 +25,9 @@
     "lint:fix": "eslint --fix src/**/*.{js,ts,tsx}",
     "e2e": "cypress open",
     "e2e:run": "cypress run",
-    "build:image": "npm run build && docker build -t bank-client/front:1.0.1 ."
+    "build:image": "npm run build && docker build -t bank-client/front:1.1.0 .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -62,6 +64,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "gh-pages": "^3.2.3",
     "husky": "^7.0.0",
     "lint-staged": "^12.0.3",
     "prettier": "^2.4.1",
