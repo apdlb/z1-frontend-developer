@@ -1,27 +1,25 @@
-import { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Webcam from 'react-webcam';
 import validateDocument from '../../../api/evaluation';
 import Camera from '../../../components/Camera';
 import { CameraStatusEnum } from '../../../components/Camera/types';
+import { Context } from '../../../context';
 import useIsMounted from '../../../hooks/useIsMounted';
-import { LastDocumentProcessed, OutcomeEnum } from '../../../model/evaluation';
+import { OutcomeEnum } from '../../../model/evaluation';
 import PATHS from '../../../routes/paths';
 import i18n from '../../../utils/i18n';
 import { Button, Container, Content, Subtitle, Title } from './styles';
 
 const Scan: React.FC = () => {
-  const location = useLocation();
+  const { lastDocumentProcessed, setLastDocumentProcessed } =
+    useContext(Context);
   const navigate = useNavigate();
   const isMounted = useIsMounted();
   const cameraRef = useRef<Webcam>(null);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
-  const [lastDocumentProcessed, setLastDocumentProcessed] =
-    useState<LastDocumentProcessed>();
   const [cameraStatus, setCameraStatus] = useState<CameraStatusEnum>();
-  const stateLastDocumentProcessed: LastDocumentProcessed =
-    location.state?.lastDocumentProcessed;
 
   useEffect(() => {
     return () => {
@@ -32,23 +30,18 @@ const Scan: React.FC = () => {
   }, []);
 
   const navigateToHome = () => {
-    navigate(PATHS.HOME, {
-      state: {
-        lastDocumentProcessed:
-          lastDocumentProcessed || stateLastDocumentProcessed,
-      },
-    });
+    navigate(PATHS.HOME);
   };
 
   useEffect(() => {
-    if (lastDocumentProcessed?.outcome === OutcomeEnum.SUCCESS) {
-      setCameraStatus(CameraStatusEnum.OK);
-      navigateToHome();
-      if (intervalId) {
+    if (intervalId) {
+      if (lastDocumentProcessed?.outcome === OutcomeEnum.SUCCESS) {
+        setCameraStatus(CameraStatusEnum.OK);
+        navigateToHome();
         clearInterval(intervalId);
+      } else if (lastDocumentProcessed?.outcome === OutcomeEnum.ERROR) {
+        setCameraStatus(CameraStatusEnum.KO);
       }
-    } else if (lastDocumentProcessed?.outcome === OutcomeEnum.ERROR) {
-      setCameraStatus(CameraStatusEnum.KO);
     }
   }, [lastDocumentProcessed]);
 
@@ -61,11 +54,14 @@ const Scan: React.FC = () => {
         };
         validateDocument(data)
           .then(evaluation => {
-            if (isMounted())
-              setLastDocumentProcessed({
+            if (isMounted()) {
+              const newLastDocumentProcessed = {
                 document,
                 outcome: evaluation.summary.outcome,
-              });
+              };
+              if (setLastDocumentProcessed)
+                setLastDocumentProcessed(newLastDocumentProcessed);
+            }
           })
           .catch(() => {
             if (isMounted())

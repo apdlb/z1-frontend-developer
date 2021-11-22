@@ -2,13 +2,16 @@ import { ToastContainer } from 'react-toastify';
 import GlobalStyle from './styles';
 import Routes from './routes';
 import 'react-toastify/dist/ReactToastify.css';
+import { ContextProvider } from './context';
 
 const App: React.FC = () => {
   return (
     <>
       <GlobalStyle />
 
-      <Routes />
+      <ContextProvider>
+        <Routes />
+      </ContextProvider>
 
       <ToastContainer
         position="bottom-left"
