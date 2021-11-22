@@ -7,6 +7,7 @@ const i18n = {
   'scan.subtitle':
     'Fit your ID card inside the frame.\nThe picture will be taken automatically.',
   'scan.subtitle.2': 'The picture will be taken automatically.',
+  picture: 'Picture',
   'take-picture': 'Take picture',
   'retake-picture': 'Retake picture',
   cancel: 'Cancel',
@@ -18,6 +19,8 @@ const i18n = {
     'Turn on the camera permission for the full experience.',
   'not-found': '404: Not found',
   'back-home': 'Back to Home',
+  accepted: 'Accepted',
+  rejected: 'Rejected',
 };
 
 export default i18n;
