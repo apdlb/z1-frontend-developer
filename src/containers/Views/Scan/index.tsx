@@ -38,7 +38,6 @@ const Scan: React.FC = () => {
       if (lastDocumentProcessed?.outcome === OutcomeEnum.SUCCESS) {
         setCameraStatus(CameraStatusEnum.OK);
         navigateToHome();
-        clearInterval(intervalId);
       } else if (lastDocumentProcessed?.outcome === OutcomeEnum.ERROR) {
         setCameraStatus(CameraStatusEnum.KO);
       }
