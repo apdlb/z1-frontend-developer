@@ -3,13 +3,6 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 const http = axios.create({
   baseURL: 'https://front-exercise.z1.digital',
   timeout: 3000,
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers':
-      'Origin, X-Requested-With, Content-Type, Accept, Methods, Credentials, Authorization',
-    'Access-Control-Allow-Methods': 'OPTIONS, GET, POST, PUT, PATCH, DELETE',
-    crossDomain: 'true',
-  },
 });
 
 http.interceptors.response.use(

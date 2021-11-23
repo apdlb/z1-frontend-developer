@@ -1,20 +1,19 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import IdBg from '../../../assets/id_bg.svg';
-import { LastDocumentProcessed } from '../../../model/evaluation';
 import PATHS from '../../../routes/paths';
 import { Card, Container, Subtitle, PreviewImage, Title } from './styles';
 import DocumentInfo from '../../../components/DocumentInfo';
 import PictureButton from '../../../components/PictureButton';
 import i18n from '../../../utils/i18n';
+import { Context } from '../../../context';
 
 const Home: React.FC = () => {
-  const location = useLocation();
+  const { lastDocumentProcessed } = useContext(Context);
   const navigate = useNavigate();
-  const lastDocumentProcessed: LastDocumentProcessed =
-    location.state?.lastDocumentProcessed;
 
   const navigateToScan = () => {
-    navigate(PATHS.SCAN, { state: { lastDocumentProcessed } });
+    navigate(PATHS.SCAN);
   };
 
   return (

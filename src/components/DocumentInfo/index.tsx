@@ -14,7 +14,7 @@ const DocumentInfo: React.FC<IDocumentInfoProps> = props => {
     <Document>
       <DocumentImage
         src={lastDocumentProcessed.document}
-        alt="foto"
+        alt={i18n.picture}
         status={lastDocumentProcessed.outcome}
       />
       <DocumentStatus
@@ -25,15 +25,15 @@ const DocumentInfo: React.FC<IDocumentInfoProps> = props => {
           <IconText
             dataCy="document-accepted"
             src={Success}
-            alt="Success"
-            text="Accepted"
+            alt={i18n.accepted}
+            text={i18n.accepted}
           />
         ) : (
           <IconText
             dataCy="document-rejected"
             src={Error}
-            alt="Rejected"
-            text="Rejected"
+            alt={i18n.rejected}
+            text={i18n.rejected}
           />
         )}
       </DocumentStatus>
